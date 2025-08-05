@@ -5,7 +5,7 @@ import Logo from "/public/icons/Frame.svg";
 export default function Header() {
   return (
     <header>
-      {/* Top bar */}
+      {/* Top bar info */}
       <div className="bg-[#1a2a3a] text-white text-sm">
         <div className="container mx-auto flex justify-between items-center /* py-2 px-4 */ h-16">
           <div className="flex items-center space-x-6">
@@ -33,18 +33,16 @@ export default function Header() {
           </div>
         </div>
       </div>
-      {/* Main nav */}
+
       <div className="bg-white shadow">
         <div className="container mx-auto flex justify-between items-center h-24">
-          {/* Logo */}
           <div className="flex items-center space-x-2">
-            {/* Replace with your logo image if needed */}
             <Link to={"/"}>
               {" "}
               <img className="h-70 w-70" src={Logo} alt="logo" />{" "}
             </Link>
           </div>
-          {/* Menu */}
+
           <nav>
             <ul className="flex space-x-6 text-sm">
               <li>
