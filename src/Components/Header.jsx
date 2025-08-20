@@ -1,11 +1,10 @@
 import { IoIosSend, IoIosCall } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router";
-import Logo from "/public/icons/Frame.svg";
+import NavBar from "./NavBar";
 export default function Header() {
   return (
-    <header>
-      {/* Top bar info */}
+    <>
       <div className="bg-[#1a2a3a] text-white text-sm">
         <div className="container mx-auto flex justify-between items-center /* py-2 px-4 */ h-16">
           <div className="flex items-center space-x-6">
@@ -39,36 +38,17 @@ export default function Header() {
           <div className="flex items-center space-x-2">
             <Link to={"/"}>
               {" "}
-              <img className="h-70 w-70" src={Logo} alt="logo" />{" "}
+              <img
+                className="h-24 w-70 text-white"
+                src="/icons/Frame.svg"
+                alt="logo"
+              />{" "}
             </Link>
           </div>
 
-          <nav>
-            <ul className="flex space-x-6 text-sm">
-              <li>
-                <Link to="/boliger" className="hover:text-[#1a2a3a]">
-                  Boliger til salg
-                </Link>
-              </li>
-              <li>
-                <Link to="/maeglere" className="hover:text-[#1a2a3a]">
-                  Mæglere
-                </Link>
-              </li>
-              <li>
-                <Link to="/favoritter" className="hover:text-[#1a2a3a]">
-                  Mine favoritter
-                </Link>
-              </li>
-              <li>
-                <Link to="/kontakt" className="hover:text-[#1a2a3a]">
-                  Kontakt os
-                </Link>
-              </li>
-            </ul>
-          </nav>
+          <NavBar />
         </div>
       </div>
-    </header>
+    </>
   );
 }

@@ -7,6 +7,10 @@ import Contact from "./Pages/Contact.jsx";
 import { ErrorBoundary } from "./Components/Error";
 import Boliger from "./Pages/Boliger.jsx";
 import List from "./Pages/Mæglere.jsx";
+import Login from "./Pages/Login.jsx";
+import Register from "./Pages/register.jsx";
+import { useState, useEffect } from "react";
+import Favs from "./Pages/favoritter.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,11 +29,23 @@ const router = createBrowserRouter([
         element: <Boliger />,
       },
       {
+        path: "Login",
+        element: <Login />,
+      },
+      {
+        path: "Register",
+        element: <Register />,
+      },
+      {
         path: "Maeglere",
         element: <List />,
       },
       {
-        path: "Kontakt Os",
+        path: "Favoritter",
+        element: <Favs />,
+      },
+      {
+        path: "Contact",
         element: <Contact />,
       },
       {

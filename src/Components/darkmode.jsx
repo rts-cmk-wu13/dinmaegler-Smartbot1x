@@ -80,12 +80,12 @@ export default function Darkmode() {
         <div></div>
       </label>
 
-      {/* <section>
+      <section className="darkmode-section">
         <div className="dot"></div>
         <div className="dot"></div>
         <div className="dot"></div>
         <div className="dot"></div>
-      </section> */}
+      </section>
     </>
   );
 }

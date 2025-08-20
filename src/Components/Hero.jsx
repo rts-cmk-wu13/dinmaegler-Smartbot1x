@@ -13,7 +13,7 @@ export default function Hero() {
         <h1 className="text-5xl font-extrabold mb-10 drop-shadow-lg">
           Søg efter din drømmebolig
         </h1>
-        <div className="bg-white text-[#222] rounded-lg shadow-2xl p-8 text-left max-w-[600px] mx-auto">
+        <div className="bg-white text-[#222] rounded-lg shadow-2xl p-8 text-left max-w-[920pxx-auto">
           <div className="font-semibold mb-2">
             <span className="border-b'">Søg</span> blandt 158 boliger til salg i
             74 butikker
