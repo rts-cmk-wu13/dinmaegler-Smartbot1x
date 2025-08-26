@@ -10,7 +10,7 @@ export default function Heading({ className = "", h1, ...rest }) {
       <div
         className="w-full h-[192px] object-cover "
         style={{
-          backgroundImage: `linear-gradient(rgba(211, 211, 211, .5), rgba(211, 211, 211, .5)), url(${herofoto})`,
+          backgroundImage: `linear-gradient(rgba(51, 72, 92, 0.7), rgba(51, 72, 92, 0.7)), url(${herofoto})`,
           backgroundPosition: "50%",
           backgroundSize: "cover",
           backgroundBlendMode: "multiply",

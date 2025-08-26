@@ -4,7 +4,7 @@ const HeroAccount = ({ title, breadcrumbs }) => {
     <div
       className="w-full h-[400px] bg-lightgray flex flex-col justify-center items-center text-white relative bg-cover bg-no-repeat bg-blend-multiply"
       style={{
-        backgroundImage: `linear-gradient(rgba(211, 211, 211, .5), rgba(211, 211, 211, .5)), url(${bg})`,
+        backgroundImage: `linear-gradient(rgba(51, 72, 92, 0.7), rgba(51, 72, 92, 0.7)), url(${bg})`,
         backgroundPosition: "50%",
       }}
     >
