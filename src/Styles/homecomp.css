@@ -1,5 +1,4 @@
-/* Glassmorphism nav styles */
-.glass-nav {
+/* .glass-nav {
   position: relative;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 100vw;
@@ -48,7 +47,7 @@
   position: absolute;
   pointer-events: none;
   z-index: 12;
-}
+} */
 .home-visual {
   position: relative;
   display: inline-block;

@@ -1,4 +1,5 @@
 import Heropic from "../assets/hero.png";
+import { DrawCircleText } from "./Motion/text";
 
 export default function Hero() {
   return (
@@ -11,7 +12,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/30 z-[1]" />
       <div className="relative z-[2] w-full max-w-[920px] h-[202px] mx-auto text-center text-white">
         <h1 className="text-5xl font-extrabold mb-10 drop-shadow-lg">
-          Søg efter din drømmebolig
+          <DrawCircleText />
         </h1>
         <div className="bg-white text-[#222] rounded-lg shadow-2xl p-8 text-left max-w-[920pxx-auto">
           <div className="font-semibold mb-2">

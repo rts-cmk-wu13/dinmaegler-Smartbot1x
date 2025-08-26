@@ -218,9 +218,11 @@ function Home() {
           )}
 
           <div className="text-center mt-16">
-            <button className="inline-flex items-center px-8 cursor-pointer py-4 bg-[#162A41] text-white text-lg font-semibold rounded-xl hover:bg-[#162A60] transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              Se alle boliger
-            </button>
+            <Link to="/boliger" className="inline-flex items-center">
+              <button className="inline-flex items-center px-8 cursor-pointer py-4 bg-[#162A41] text-white text-lg font-semibold rounded-xl hover:bg-[#162A60] transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                Se alle boliger
+              </button>
+            </Link>
           </div>
         </div>
       </section>

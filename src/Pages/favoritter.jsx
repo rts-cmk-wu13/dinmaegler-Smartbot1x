@@ -1,9 +1,9 @@
+import Heading from "../Components/Smallhero";
+
 export default function Favs() {
   return (
     <>
-      <div className="min-h-screen flex flex-col justify-center items-center bg-white-50">
-        favs{" "}
-      </div>
+      <Heading h1="Mine favoritboliger" className="mb-8" />
     </>
   );
 }

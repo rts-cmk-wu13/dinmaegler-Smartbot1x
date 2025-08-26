@@ -4,12 +4,11 @@ import Loading from "./Components/Loading";
 /* import Darkmode from "./Components/darkmode"; */
 import Header from "./Components/Header";
 
-function App() {
+function Layout() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading (replace with real logic as needed)
-    const timer = setTimeout(() => setIsLoading(false), 500);
+    const timer = setTimeout(() => setIsLoading(false), 0);
     return () => clearTimeout(timer);
   }, []);
 
@@ -26,11 +25,9 @@ function App() {
       <main>
         <Outlet />
       </main>
-      <footer>
-        <small>&copy; {new Date().getFullYear()} My App.</small>
-      </footer>
+      <footer></footer>
     </>
   );
 }
 
-export default App;
+export default Layout;

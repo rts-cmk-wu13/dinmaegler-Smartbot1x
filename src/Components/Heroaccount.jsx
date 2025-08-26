@@ -1,38 +1,24 @@
 import bg from "../assets/loginbg.png";
-
 const HeroAccount = ({ title, breadcrumbs }) => {
   return (
     <div
+      className="w-full h-[400px] bg-lightgray flex flex-col justify-center items-center text-white relative bg-cover bg-no-repeat bg-blend-multiply"
       style={{
-        width: "100%",
-        height: "400px",
-        backgroundImage: `url(${bg})`,
-        backgroundColor: "lightgray",
+        backgroundImage: `linear-gradient(rgba(211, 211, 211, .5), rgba(211, 211, 211, .5)), url(${bg})`,
         backgroundPosition: "50%",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundBlendMode: "multiply",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "#fff",
-        position: "relative",
       }}
     >
-      <div style={{ textAlign: "center", marginTop: "40px" }}>
-        <h2 style={{ fontWeight: 600, fontSize: "18px", marginBottom: "16px" }}>
-          {title}
-        </h2>
-        <div style={{ fontSize: "13px", color: "#dbe6ee" }}>
+      <div className="text-center mt-10">
+        <h2 className="font-semibold text-lg mb-4">{title}</h2>
+        <div className="text-sm text-[#dbe6ee] flex justify-center items-center gap-2">
           {breadcrumbs.map((item, idx) => (
             <span
               key={idx}
-              style={{ color: item.active ? "#7a8fa4" : "#dbe6ee" }}
+              className={item.active ? "text-[#7a8fa4]" : "text-[#dbe6ee]"}
             >
               {item.text}
               {idx < breadcrumbs.length - 1 && (
-                <span style={{ margin: "0 8px", color: "#7a8fa4" }}>|</span>
+                <span className="mx-2 text-[#7a8fa4]">|</span>
               )}
             </span>
           ))}

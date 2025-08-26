@@ -1,45 +1,25 @@
-import { Link } from "react-router";
-import { useEffect } from "react";
-import { setupGlassNavEffect } from "./GlassNavEffect";
-import "../Styles/homecomp.css";
+/* import "../Styles/glassnavdemo.css"; */
+import { NavLink, useLocation } from "react-router";
+
+function NavItem({ to, children }) {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+  return (
+    <li className={isActive ? "active" : ""}>
+      <NavLink to={to}>{children}</NavLink>
+    </li>
+  );
+}
 
 export default function NavBar() {
-  useEffect(() => {
-    const cleanup = setupGlassNavEffect(
-      "nav.glass-nav",
-      ".effect.filter",
-      ".effect.text"
-    );
-    return cleanup;
-  }, []);
-
   return (
-    <nav className="glass-nav">
-      <ul className="flex space-x-6 text-sm">
-        <li>
-          <Link to="/boliger" className="text-black hover:text-[#1a2a3a]">
-            Boliger til salg
-          </Link>
-        </li>
-        <li>
-          <Link to="/maeglere" className="hover:text-[#1a2a3a]">
-            Mæglere
-          </Link>
-        </li>
-        <li>
-          <Link to="/favoritter" className="hover:text-[#1a2a3a]">
-            Mine favoritter
-          </Link>
-        </li>
-        <li>
-          <Link to="/Contact" className="hover:text-[#1a2a3a]">
-            Kontakt os
-          </Link>
-        </li>
+    <nav className="glass-nav-demo ">
+      <ul className="flex gap-4 ">
+        <NavItem to="/boliger">Boliger til salg</NavItem>
+        <NavItem to="/maeglere">Mæglere</NavItem>
+        <NavItem to="/favoritter">Mine favoritter</NavItem>
+        <NavItem to="/Contact">Kontakt os</NavItem>
       </ul>
-
-      <span className="effect filter"></span>
-      {/* <span className="effect text active hidden">Boliger til salg</span> */}
     </nav>
   );
 }

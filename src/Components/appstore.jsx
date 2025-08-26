@@ -1,6 +1,7 @@
 import { FaApple } from "react-icons/fa";
-import phonefoto from "../assets/1stfone.png";
-import secondfoto from "../assets/sndfone.svg";
+/* import phonefoto from "../assets/1stfone.png";
+import secondfoto from "../assets/sndfone.svg"; */
+import MotionPath from "./Motion/phonesanim.jsx";
 export default function AppStore() {
   return (
     <>
@@ -25,10 +26,7 @@ export default function AppStore() {
             </button>
           </div>
         </div>
-        <div className=" flex ">
-          <img src={phonefoto} alt="app store fone" />
-          <img src={secondfoto} alt="app store fone" />
-        </div>
+        <MotionPath />
       </div>
     </>
   );

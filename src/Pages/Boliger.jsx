@@ -1,7 +1,9 @@
+import Heading from "../Components/Smallhero.jsx";
+
 export default function Boliger() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Boliger Page</h1>
+      <Heading h1="Boliger Til Salg" className="mb-8" />
     </>
   );
 }
