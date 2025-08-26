@@ -2,7 +2,8 @@ import { IoIosSend, IoIosCall } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router";
 /* import NavBar from "./NavBar"; */
-import Navs from "./customnav";
+/* import Navs from "./customnav"; */
+import NavBar from "./NavBar";
 export default function Header() {
   return (
     <>
@@ -52,7 +53,7 @@ export default function Header() {
               />{" "}
             </Link>
           </div>
-          <Navs />
+          <NavBar />
         </div>
       </div>
     </>

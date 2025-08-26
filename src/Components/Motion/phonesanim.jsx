@@ -2,20 +2,6 @@ import * as motion from "motion/react-client";
 import phonefoto from "../../assets/1stfone.png";
 import secondfoto from "../../assets/sndfone.svg";
 
-const transition = {
-  duration: 4,
-  repeat: Number.POSITIVE_INFINITY,
-  repeatType: "reverse",
-  ease: "easeInOut",
-};
-
-const phoneAnimation = {
-  duration: 3,
-  repeat: Number.POSITIVE_INFINITY,
-  repeatType: "loop",
-  ease: "easeInOut",
-};
-
 export default function MotionPath() {
   return (
     <div style={{ position: "relative", width: 451, height: 437 }}>
@@ -31,9 +17,9 @@ export default function MotionPath() {
           strokeWidth="12"
           stroke="var(--hue-6-transparent)"
           strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={transition}
+          // initial={{ pathLength: 0 }}
+          // animate={{ pathLength: 1 }}
+          // transition={transition}
         />
       </svg>
 
@@ -55,33 +41,13 @@ export default function MotionPath() {
         alt="Right Phone"
         style={{
           position: "absolute",
-          /*   width: 271, */
           zIndex: 2,
           bottom: -5,
           right: 0,
         }}
-        initial={{
-          rotateX: 0,
-          rotateY: 0,
-          scale: 1,
-          x: 0,
-          y: 0,
-          /*  filter: "drop-shadow(0px 0px 0px rgba(0,0,0,0))", */
-        }}
-        animate={{
-          rotateX: [0, -15, -15, 0],
-          rotateY: [0, 15, 15, 0],
-          scale: [1, 1.1, 1.1, 1],
-          x: [0, 0, 50, 0],
-          y: [0, -30, -30, 0],
-          filter: [
-            "drop-shadow(0px 0px 0px rgba(0,0,0,0))",
-            "drop-shadow(10px 10px 20px rgba(0,0,0,0.3))",
-            "drop-shadow(15px 15px 25px rgba(0,0,0,0.3))",
-            "drop-shadow(0px 0px 0px rgba(0,0,0,0))",
-          ],
-        }}
-        transition={phoneAnimation}
+        // initial={...}
+        // animate={...}
+        // transition={phoneAnimation}
       />
     </div>
   );

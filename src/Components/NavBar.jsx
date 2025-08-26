@@ -1,4 +1,4 @@
-/* import "../Styles/glassnavdemo.css"; */
+import "../Styles/nav.css";
 import { NavLink, useLocation } from "react-router";
 
 function NavItem({ to, children }) {
