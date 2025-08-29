@@ -37,6 +37,8 @@ export default function Boliger() {
                 home.images && home.images[0]?.formats?.thumbnail?.url
                   ? home.images[0].formats.thumbnail.url
                   : home.images && home.images[0]?.url
+                  ? home.images[0].url
+                  : "https://via.placeholder.com/400x225?text=No+Image"
               }
               alt={home.adress1}
               className="w-full h-56 object-cover"

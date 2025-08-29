@@ -2,7 +2,7 @@
 
 
 // Get all homes
-export async function fetchBoliger(params = {}) {
+export async function Boliger(params = {}) {
     const query = new URLSearchParams(params).toString();
     const url = `https://dinmaegler.onrender.com/homes${query ? '?' + query : ''}`;
     const response = await fetch(url);
@@ -11,22 +11,22 @@ export async function fetchBoliger(params = {}) {
 }
 
 // Get amount of homes for sale
-export async function fetchBoligerCount() {
+export async function BoligerCount() {
     const response = await fetch('https://dinmaegler.onrender.com/homes/count');
     if (!response.ok) throw new Error('Failed to fetch boliger count');
     return response.json();
 }
 
 // Get a number of homes (pagination)
-export async function fetchBoligerPaginated(limit = 4, start = 0) {
+export async function BoligerPaginated(limit = 4, start = 0) {
     const url = `https://dinmaegler.onrender.com/homes?_limit=${limit}&_start=${start}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch paginated boliger');
     return response.json();
 }
 
-// Get single home by ID
-export async function fetchBoligById(id) {
+// Get single home by 
+export async function BoligById(id) {
     const url = `https://dinmaegler.onrender.com/homes/${id}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch bolig by id');
@@ -34,7 +34,7 @@ export async function fetchBoligById(id) {
 }
 
 // Get homes by type
-export async function fetchBoligerByType(type) {
+export async function BoligerByType(type) {
     const url = `https://dinmaegler.onrender.com/homes?type_eq=${encodeURIComponent(type)}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch boliger by type');
@@ -42,7 +42,7 @@ export async function fetchBoligerByType(type) {
 }
 
 // Get homes in price range
-export async function fetchBoligerByPriceRange(min, max) {
+export async function BoligerByPriceRange(min, max) {
     const url = `https://dinmaegler.onrender.com/homes?price_gte=${min}&price_lte=${max}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch boliger by price range');

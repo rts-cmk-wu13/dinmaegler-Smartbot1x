@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <>
       <div className="bg-[#1a2a3a] text-white text-sm">
-        <div className="container mx-auto flex justify-between items-center /* py-2 px-4 */ h-16">
+        <div className="container flex justify-between items-center py-2 px-4 h-16">
           <div className="flex items-center space-x-6">
             <span className="flex items-center space-x-1">
               <IoIosSend />
