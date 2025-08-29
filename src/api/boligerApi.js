@@ -2,7 +2,7 @@
 
 
 // Get all homes
-export async function Boliger(params = {}) {
+export async function fetchBoliger(params = {}) {
     const query = new URLSearchParams(params).toString();
     const url = `https://dinmaegler.onrender.com/homes${query ? '?' + query : ''}`;
     const response = await fetch(url);

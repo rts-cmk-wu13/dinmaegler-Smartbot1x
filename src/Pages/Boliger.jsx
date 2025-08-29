@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Heading from "../Components/Smallhero.jsx";
 import { fetchBoliger } from "../api/boligerApi";
-/* import { SlEnergy } from "react-icons/sl"; */
+import { SlEnergy } from "react-icons/sl";
 import Loading from "../Components/Loading.jsx";
 
 export default function Boliger() {
