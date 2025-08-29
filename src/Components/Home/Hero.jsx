@@ -1,5 +1,5 @@
-import Heropic from "../assets/hero.png";
-import { DrawCircleText } from "./Motion/text";
+import Heropic from "../../assets/hero.png";
+import { DrawCircleText } from "../Motion/text";
 
 export default function Hero() {
   return (

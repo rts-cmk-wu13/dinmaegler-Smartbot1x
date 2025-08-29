@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
-import Hero from "../Components/Hero.jsx";
-import HomeComp from "../Components/homecomp.jsx";
+import Hero from "../Components/Home/Hero.jsx";
+import HomeComp from "../Components/Home/homecomp.jsx";
 import { FaLongArrowAltRight, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { FiHome, FiMapPin } from "react-icons/fi";
 import villa from "/icons/villa.png";

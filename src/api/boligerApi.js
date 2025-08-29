@@ -1,5 +1,4 @@
-// src/api/boligerApi.js
-// API functions for Boliger page
+
 
 
 // Get all homes

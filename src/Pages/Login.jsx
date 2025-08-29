@@ -1,10 +1,17 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import "../Styles/socialButtons.css";
 import Heroaccount from "../Components/Heroaccount";
+import { useState } from "react";
+import { login, getCurrentUser } from "../api/auth";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   return (
     <>
       <Heroaccount
@@ -23,7 +30,25 @@ export default function Login() {
           <h2 className="text-2xl font-semibold text-center mb-6">
             Log ind på din konto
           </h2>
-          <form className="space-y-4">
+          <form
+            className="space-y-4"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              setError(null);
+              setLoading(true);
+              try {
+                await login(email, password);
+
+                await getCurrentUser();
+                navigate("/");
+              } catch (err) {
+                console.error("Login error", err);
+                setError(err?.message || "Login failed");
+              } finally {
+                setLoading(false);
+              }
+            }}
+          >
             <div>
               <label className="block text-sm mb-1" htmlFor="email">
                 Email
@@ -31,6 +56,8 @@ export default function Login() {
               <input
                 id="email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Email"
               />
@@ -42,17 +69,21 @@ export default function Login() {
               <input
                 id="password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Password"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-[#162A41] cursor-pointer text-white py-2 rounded hover:bg-[#162A51] transition"
+              disabled={loading}
+              className="w-full bg-[#162A41] cursor-pointer text-white py-2 rounded hover:bg-[#162A51] transition disabled:opacity-60"
             >
-              Log ind
+              {loading ? "Logger ind..." : "Log ind"}
             </button>
           </form>
+          {error && <div className="mt-3 text-sm text-red-600">{error}</div>}
           <div className="mt-6">
             <p className="text-sm mb-2">Log ind med</p>
             <div className="social-buttons">

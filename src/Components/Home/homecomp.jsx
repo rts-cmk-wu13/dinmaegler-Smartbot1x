@@ -1,9 +1,9 @@
 import { FiAward, FiHome, FiMapPin, FiUsers } from "react-icons/fi";
 import { TbBuildingStore } from "react-icons/tb";
-import foto from "../assets/family-moving-using-boxes 1.svg";
+import foto from "../../assets/familyfoto.svg";
 import sold_house from "/icons/housesold.svg";
 import Homeikon from "/icons/home.svg";
-import "../Styles/homecomp.css";
+/* import "../../Styles/homecomp.css"; */
 
 export default function HomeComp({ imageSrc = foto }) {
   return (
@@ -17,14 +17,14 @@ export default function HomeComp({ imageSrc = foto }) {
               alt="Familie i hjemmet"
               className="home-visual__img"
             />
-            <div className="home-visual__badge">
+            {/*  <div className="home-visual__badge">
               <div className="home-visual__badge-num">38+</div>
               <div className="home-visual__badge-text">
                 års mægler-
                 <br />
                 erfaring
               </div>
-            </div>
+            </div>*/}
           </div>
         </div>
 
@@ -72,21 +72,39 @@ export default function HomeComp({ imageSrc = foto }) {
         </div>
       </div>
 
-      <div className="my-12 border-t border-slate-200" />
+      <div className="my-12 border-t border-[#D3DEE8]" />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <Feature
-          icon={<FiAward className="size-6" />}
+          icon={
+            <img
+              src="/icons/property-1.svg"
+              alt="property"
+              className="size-[36px] object-cover"
+            />
+          }
           title="Bestil et salgstjek"
           text="Med et Din Mægler Salgstjek bliver du opdateret på værdien af din bolig."
         />
         <Feature
-          icon={<TbBuildingStore className="size-6" />}
+          icon={
+            <img
+              src="/icons/Location.svg"
+              alt="property"
+              className="size-[36px] "
+            />
+          }
           title="74 butikker"
           text="Hos Din Mægler er din bolig til salg i alle vores 74 butikker, som er fordelt rundt om i Danmark."
         />
         <Feature
-          icon={<FiMapPin className="size-6" />}
+          icon={
+            <img
+              src="/icons/customer1.svg"
+              alt="property"
+              className="w-[50px] h-[50px] "
+            />
+          }
           title="Tilmeld køberkartotek"
           text="Når du er tilmeldt vores køberkartotek, bliver du kontaktet inden en ny bolig bliver annonceret."
         />
