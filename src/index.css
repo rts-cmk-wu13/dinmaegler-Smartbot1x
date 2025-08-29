@@ -1,5 +1,18 @@
 /* global css */
 @import "tailwindcss";
+#root {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+/* .fotoplaceholder {
+  height: 256px;
+  width: 540px;
+  opacity: 0.5;
+  object-fit: cover;
+} */
 
 @font-face {
   font-family: "Roboto";

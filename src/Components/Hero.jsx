@@ -4,20 +4,22 @@ import { DrawCircleText } from "./Motion/text";
 export default function Hero() {
   return (
     <section
-      className="relative w-full h-[500px] flex items-center justify-center bg-cover bg-center"
+      className="relative w-full max-w-full h-[850px] flex items-center justify-center bg-cover bg-bottom bg-blend-soft-light"
       style={{
-        backgroundImage: `linear-gradient(rgba(27, 28, 47, .8), rgba(27, 28, 47, .1)), url(${Heropic})`,
+        backgroundImage: `linear-gradient(rgba(51, 72, 92, 0.7), rgba(51, 72, 92, 0.7)), url(${Heropic})`,
+        backgroundSize: "cover",
+        backgroundPosition: "bottom",
       }}
     >
-      <div className="absolute inset-0 bg-black/30 z-[1]" />
+      <div className="absolute inset-0" />
       <div className="relative z-[2] w-full max-w-[920px] h-[202px] mx-auto text-center text-white">
         <h1 className="text-5xl font-extrabold mb-10 drop-shadow-lg">
           <DrawCircleText />
         </h1>
-        <div className="bg-white text-[#222] rounded-lg shadow-2xl p-8 text-left max-w-[920pxx-auto">
+        <div className="bg-white text-[#222] rounded-lg shadow-2xl p-8 text-left max-w-[920px] h-[202px]">
           <div className="font-semibold mb-2">
-            <span className="border-b'">Søg</span> blandt 158 boliger til salg i
-            74 butikker
+            <span className="border-b-4 border-[#162A41] ">Søg</span> blandt 158
+            boliger til salg i 74 butikker
           </div>
           <div className="mb-4 text-gray-600">
             Hvad skal din næste bolig indeholde

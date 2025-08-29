@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export const DrawCircleText = () => {
   return (
-    <h1 className="max-w-2xl text-center text-5xl leading-snug">
+    <span className="max-w-2xl text-center text-5xl leading-snug block">
       Søg efter din{" "}
       <span className="relative">
         drømmebolig
@@ -24,6 +24,6 @@ export const DrawCircleText = () => {
           />
         </svg>
       </span>{" "}
-    </h1>
+    </span>
   );
 };

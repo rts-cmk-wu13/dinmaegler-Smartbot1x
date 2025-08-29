@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 function Loading() {
   return (
-    <div className="container">
+    <div className="container flex justify-center items-center h-screen">
       <motion.div
         className="spinner"
         animate={{ rotate: 360 }}

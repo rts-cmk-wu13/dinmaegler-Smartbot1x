@@ -1,4 +1,4 @@
-.spinner {
+/*  .spinner {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -7,7 +7,6 @@
   transform: translate(-50%, -50%);
   z-index: 9999;
 }
-
 .spinner div {
   position: absolute;
   width: 50%;
@@ -16,7 +15,7 @@
   transform: rotate(calc(var(--rotation) * 1deg))
     translate(0, calc(var(--translation) * 1%));
   animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
-}
+} 
 
 .spinner div:nth-child(1) {
   --delay: 0.1;
@@ -98,3 +97,4 @@
       translate(0, calc(var(--translation) * 1.5%));
   }
 }
+ */
