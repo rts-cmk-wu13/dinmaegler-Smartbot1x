@@ -3,5 +3,3 @@ darkmode.css
 node_modules
 .env
 auth.js
-api/boligerApi.js
-src/api/boligerApi.js
