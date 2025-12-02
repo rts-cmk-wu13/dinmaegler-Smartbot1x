@@ -16,7 +16,7 @@
 .agents-section .agent-card img {
   width: 100%;
   height: 256px;
-  object-fit: cover;
+  object-fit: scale-down;
 }
 .agents-section .agent-card h3 {
   font-size: 1.125rem;

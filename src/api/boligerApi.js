@@ -10,7 +10,7 @@ export async function fetchBoliger(params = {}) {
     return response.json();
 }
 
-// Get amount of homes for sale
+// Get amount of homes count
 export async function BoligerCount() {
     const response = await fetch('https://dinmaegler.onrender.com/homes/count');
     if (!response.ok) throw new Error('Failed to fetch boliger count');
@@ -25,14 +25,14 @@ export async function BoligerPaginated(limit = 4, start = 0) {
     return response.json();
 }
 
-// Get single home by 
-export async function BoligById(id) {
-    const url = `https://dinmaegler.onrender.com/homes/${id}`;
+/* // Get homes by type
+export async function BoligerByType(type) {
+    const url = `https://dinmaegler.onrender.com/homes?type_eq=${encodeURIComponent(type)}`;
     const response = await fetch(url);
-    if (!response.ok) throw new Error('Failed to fetch bolig by id');
+    if (!response.ok) throw new Error('Failed to fetch boliger by type');
     return response.json();
 }
-
+ */
 // Get homes by typ
 export async function BoligerByType(type) {
     const url = `https://dinmaegler.onrender.com/homes?type_eq=${encodeURIComponent(type)}`;
@@ -46,5 +46,20 @@ export async function BoligerByPriceRange(min, max) {
     const url = `https://dinmaegler.onrender.com/homes?price_gte=${min}&price_lte=${max}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch boliger by price range');
+    return response.json();
+}
+
+// Update a user's favorites
+export async function updateUserFavorites(userId, homesArray, token) {
+    const url = `https://dinmaegler.onrender.com/users/${userId}`;
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ homes: homesArray })
+    });
+    if (!response.ok) throw new Error('Failed to update user favorites');
     return response.json();
 }

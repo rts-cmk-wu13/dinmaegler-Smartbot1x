@@ -12,15 +12,28 @@ const HeroAccount = ({ title, breadcrumbs }) => {
         <h2 className="font-semibold text-lg mb-4">{title}</h2>
         <div className="text-sm text-[#dbe6ee] flex justify-center items-center gap-2">
           {breadcrumbs.map((item, idx) => (
-            <span
-              key={idx}
-              className={item.active ? "text-[#7a8fa4]" : "text-[#dbe6ee]"}
-            >
-              {item.text}
-              {idx < breadcrumbs.length - 1 && (
-                <span className="mx-2 text-[#7a8fa4]">|</span>
-              )}
-            </span>
+              item.text === "Home" ? (
+                <a
+                  key={idx}
+                  href="/"
+                  className={item.active ? "text-[#7a8fa4] underline" : "text-[#dbe6ee] underline"}
+                >
+                  {item.text}
+                  {idx < breadcrumbs.length - 1 && (
+                    <span className="mx-2 text-[#7a8fa4]">|</span>
+                  )}
+                </a>
+              ) : (
+                <span
+                  key={idx}
+                  className={item.active ? "text-[#7a8fa4]" : "text-[#dbe6ee]"}
+                >
+                  {item.text}
+                  {idx < breadcrumbs.length - 1 && (
+                    <span className="mx-2 text-[#7a8fa4]">|</span>
+                  )}
+                </span>
+              )
           ))}
         </div>
       </div>

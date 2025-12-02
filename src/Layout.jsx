@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Loading from "./Components/Loading";
 /* import Darkmode from "./Components/darkmode"; */
 import Header from "./Components/Header";
+import Footer from "./Components/footer";
 
 function Layout() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,9 @@ function Layout() {
       <main>
         <Outlet />
       </main>
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

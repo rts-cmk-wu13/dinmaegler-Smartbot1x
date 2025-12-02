@@ -6,11 +6,12 @@ import Loading from "./Components/Loading";
 import Contact from "./Pages/Contact.jsx";
 import { ErrorBoundary } from "./Components/Error";
 import Boliger from "./Pages/Boliger.jsx";
+import Details from "./Pages/Details.jsx";
 import List from "./Pages/Mæglere.jsx";
 import Login from "./Pages/Login.jsx";
 import Register from "./Pages/register.jsx";
-import { useState, useEffect } from "react";
 import Favs from "./Pages/favoritter.jsx";
+import ContactAgent from "./Pages/contact-agent.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         element: <Boliger />,
       },
       {
+        path: "Boliger/:id",
+        element: <Details />,
+      },
+      {
         path: "Login",
         element: <Login />,
       },
@@ -37,7 +42,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "Maeglere",
+        path: "Maegler",
         element: <List />,
       },
       {
@@ -48,6 +53,14 @@ const router = createBrowserRouter([
         path: "Contact",
         element: <Contact />,
       },
+      {
+        path: "contact-agent/:id",
+        element: <ContactAgent />,
+      },
+      /*  {
+        path: "contact-maegler",
+        element: <ContactAgent />,
+      }, */
       {
         path: "*",
         element: <NotFound />,

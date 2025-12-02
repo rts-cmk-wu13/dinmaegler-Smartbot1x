@@ -1,9 +1,40 @@
 /* global css */
 @import "tailwindcss";
+/* fix card list  */
+.property-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  justify-items: center;
+}
+
+@media (max-width: 1000px) {
+  .property-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 #root {
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
   background-color: #fff;
 }
 
@@ -212,18 +243,6 @@
     format("truetype");
   font-weight: 900;
   font-style: normal;
-}
-
-/* Global Styles */
-* {
-  font-family: "Roboto", sans-serif;
-}
-
-body {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
-  background-color: #fff;
 }
 
 .font-roboto {

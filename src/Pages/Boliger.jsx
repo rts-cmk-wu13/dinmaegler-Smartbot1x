@@ -1,88 +1,124 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import Heading from "../Components/Smallhero.jsx";
 import { fetchBoliger } from "../api/boligerApi";
-import { SlEnergy } from "react-icons/sl";
-import Loading from "../Components/Loading.jsx";
+import PropertyFilters from "../Components/Boliger/types.jsx";
+import PropertyList from "../Components/Boliger/PropertyList";
+import LoadMoreButton from "../Components/Boliger/LoadMoreButton";
 
 export default function Boliger() {
+  // State variables
   const [homes, setHomes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filter, setFilter] = useState({ type: "", min: 0, max: Infinity });
 
+  // Pagination state
+  const [limit] = useState(8);
+  const [start, setStart] = useState(0);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
+  // Cache for API results
+  const cacheRef = useRef(new Map());
+  const debounceRef = useRef(null);
+
+  // Load initial data
   useEffect(() => {
-    fetchBoliger()
-      .then((data) => {
-        setHomes(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+    loadPage(0, filter);
   }, []);
 
+  // Handle filter changes with debounce
+  const handleFilterChange = useCallback((f) => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      setFilter(f);
+      setStart(0);
+      setHasMore(true);
+      cacheRef.current.clear();
+      loadPage(0, f);
+    }, 350);
+  }, []);
+
+  // Load properties with pagination and filtering
+  async function loadPage(pageStart = 0, f = filter) {
+    // Build query parameters
+    const params = {};
+    params._limit = limit;
+    params._start = pageStart;
+    if (f?.type) params.type_eq = f.type;
+    if (Number.isFinite(f?.min)) params.price_gte = f.min;
+    if (Number.isFinite(f?.max) && f.max !== Infinity) params.price_lte = f.max;
+
+    const cacheKey = JSON.stringify(params);
+
+    try {
+      // Set appropriate loading state
+      if (pageStart === 0) {
+        setLoading(true);
+        setError(null);
+      } else {
+        setLoadingMore(true);
+      }
+
+      // Check cache first
+      if (cacheRef.current.has(cacheKey)) {
+        const cached = cacheRef.current.get(cacheKey);
+        if (pageStart === 0) setHomes(cached.slice());
+        else setHomes((prev) => [...prev, ...cached.slice()]);
+        setHasMore(cached.length === limit);
+        return;
+      }
+
+      // Fetch data from API
+      const data = await fetchBoliger(params);
+      cacheRef.current.set(cacheKey, data);
+
+      // Update state based on pagination
+      if (pageStart === 0) setHomes(data);
+      else setHomes((prev) => [...prev, ...data]);
+
+      setHasMore(data.length === limit);
+    } catch (err) {
+      setError(err.message || String(err));
+    } finally {
+      setLoading(false);
+      setLoadingMore(false);
+    }
+  }
+
+  // Handle load more button click
+  const handleLoadMore = async () => {
+    const nextStart = start + limit;
+    setStart(nextStart);
+    await loadPage(nextStart);
+  };
+
+  // Handle show less button click
+  const handleShowLess = () => {
+    setStart(0);
+    loadPage(0);
+  };
+
   return (
-    <div className="boliger-page p-8">
+    <section className="boliger-page p-8">
       <Heading h1="Boliger Til Salg" className="mb-8" />
-      {loading && <Loading />}
+
       {error && <div className="text-red-500 text-center">Error: {error}</div>}
-      <div className="homes-list grid grid-cols-1 md:grid-cols-2 gap-8">
-        {homes.map((home) => (
-          <div
-            key={home.id}
-            className="home-card bg-white rounded-xl overflow-hidden shadow border border-gray-100"
-          >
-            <img
-              src={
-                home.images && home.images[0]?.formats?.thumbnail?.url
-                  ? home.images[0].formats.thumbnail.url
-                  : home.images && home.images[0]?.url
-                  ? home.images[0].url
-                  : "https://via.placeholder.com/400x225?text=No+Image"
-              }
-              alt={home.adress1}
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-6">
-              <h2 className="font-bold text-xl mb-2">
-                {home.adress1}
-                {home.adress2 ? ` • ${home.adress2}` : ""}
-              </h2>
-              <div className="text-gray-500 mb-2">
-                {home.postalcode} {home.city}
-              </div>
-              <div className="font-semibold mb-2">
-                {home.type} &bull; Ejerudgift: {home.cost?.toLocaleString()} kr.
-              </div>
-              <div className="flex items-center mb-2 relative">
-                <div
-                  className="absolute top-0 left-0 text-[#ffffff] px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1"
-                  style={{
-                    background:
-                      home.energylabel === "A"
-                        ? "#10AC84"
-                        : home.energylabel === "B"
-                        ? "#F2C94C"
-                        : home.energylabel === "C"
-                        ? "#F2994A"
-                        : "red",
-                  }}
-                >
-                  {home.energylabel}
-                  <SlEnergy />
-                </div>
-                <span className="ml-32">
-                  {home.rooms?.split("/")[0]} værelser &bull; {home.livingspace}{" "}
-                  m²
-                  <div className="font-bold text-[#333] text-lg mt-2">
-                    Kr. {home.price?.toLocaleString()}
-                  </div>
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+
+      {/* Property Filters */}
+      <PropertyFilters onFilterChange={handleFilterChange} />
+
+      {/* Property List */}
+      <PropertyList homes={homes} loading={loading} />
+
+      {/* Pagination Controls */}
+      <LoadMoreButton
+        hasMore={hasMore}
+        loadingMore={loadingMore}
+        onLoadMore={handleLoadMore}
+        onShowLess={handleShowLess}
+        error={error}
+      />
+    </section>
   );
 }

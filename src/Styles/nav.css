@@ -1,38 +1,82 @@
 nav {
-  border-radius: 2em;
-
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  width: 600px;
+  color: #000;
   height: 50px;
+}
 
-  ul {
-    background: transparent;
-  }
-  a {
-    text-decoration: none;
-    color: #000000;
-    padding: 0.25em 1em;
-    transition: background 0.2s, color 0.2s;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px;
-  }
+nav ul {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 
-  li {
-    color: #fff;
+nav a {
+  text-decoration: none;
+  /* inherit so nav links follow the surrounding text color (desktop header uses white) */
+  color: inherit;
+  padding: 0.25em 1em;
+  transition: background 0.2s, color 0.2s;
+  font-size: 16px;
+}
 
-    &.active a {
-      /*       font-weight: 400 !important; */
-      color: #ffffff;
-      background: #000000;
-      text-shadow: none;
-      border-radius: 100vh;
-      transition: background 0.2s, color 0.2s;
-      padding: 0.25em 1em;
-    }
-  }
+nav li.active a {
+  color: #ffffff;
+  background: #000000;
+  border-radius: 9999px;
+}
+
+/* Burger menu styles (from user) */
+.wrapper-menu {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 8px;
+  border: none;
+  color: inherit;
+}
+
+/* Modern hamburger -> X animation */
+.line-menu {
+  background-color: currentColor;
+  border-radius: 3px;
+  width: 100%;
+  height: 3px;
+  transition: transform 260ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 180ms ease;
+  transform-origin: center;
+}
+
+.line-menu.half {
+  width: 60%;
+}
+
+/* center row explicit class for easier targeting */
+.line-menu.middle {
+  width: 100%;
+}
+
+.wrapper-menu.open .line-menu.start {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.wrapper-menu.open .line-menu.middle {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.wrapper-menu.open .line-menu.end {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ensure mobile nav overlay sits above header content */
+.mobile-nav-overlay {
+  z-index: 9999;
 }

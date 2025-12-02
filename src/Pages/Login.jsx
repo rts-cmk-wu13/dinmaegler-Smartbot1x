@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import "../Styles/socialButtons.css";
 import Heroaccount from "../Components/Heroaccount";
 import { useState } from "react";
-import { login, getCurrentUser } from "../api/auth";
+import { supabase } from "../../supabaseClient";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -22,12 +22,16 @@ export default function Login() {
         ]}
       />
 
-      <div className="min-h-screen flex flex-col justify-center items-center bg-white-50">
-        <div
+      <section className="min-h-screen flex flex-col justify-center items-center bg-white-50">
+        <article
           className="w-full max-w-md bg-white rounded-lg p-8"
           style={{ boxShadow: "0 10px 30px 0 rgba(0, 0, 0, 0.75)" }}
+          aria-labelledby="login-heading"
         >
-          <h2 className="text-2xl font-semibold text-center mb-6">
+          <h2
+            id="login-heading"
+            className="text-2xl font-semibold text-center mb-6"
+          >
             Log ind på din konto
           </h2>
           <form
@@ -36,10 +40,21 @@ export default function Login() {
               e.preventDefault();
               setError(null);
               setLoading(true);
-              try {
-                await login(email, password);
 
-                await getCurrentUser();
+              try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                  email,
+                  password,
+                });
+
+                if (error) {
+                  throw error;
+                }
+
+                try {
+                  sessionStorage.setItem("dm_show_login_toast", "1");
+                } catch (e) {}
+
                 navigate("/");
               } catch (err) {
                 console.error("Login error", err);
@@ -83,41 +98,55 @@ export default function Login() {
               {loading ? "Logger ind..." : "Log ind"}
             </button>
           </form>
+
           {error && <div className="mt-3 text-sm text-red-600">{error}</div>}
-          <div className="mt-6">
-            <p className="text-sm mb-2">Log ind med</p>
+
+          <aside className="mt-6" aria-labelledby="social-login">
+            <p id="social-login" className="text-sm mb-2">
+              Log ind med
+            </p>
             <div className="social-buttons">
               {/* Google Button */}
-              <button className="social-btn google">
+              <button
+                className="social-btn google"
+                aria-label="Log ind med Google"
+              >
                 <div className="gradient" />
                 <div className="icon">
                   <FcGoogle className="text-3xl" />
                 </div>
               </button>
               {/* Facebook Button */}
-              <button className="social-btn facebook">
+              <button
+                className="social-btn facebook"
+                aria-label="Log ind med Facebook"
+              >
                 <div className="gradient" />
                 <div className="icon">
                   <FaFacebookF className="text-3xl" />
                 </div>
               </button>
               {/* Twitter Button */}
-              <button className="social-btn twitter">
+              <button
+                className="social-btn twitter"
+                aria-label="Log ind med Twitter"
+              >
                 <div className="gradient" />
                 <div className="icon">
                   <FaTwitter className="text-3xl" />
                 </div>
               </button>
             </div>
-          </div>
+          </aside>
+
           <p className="text-center text-sm mt-6">
             Har du ikke en konto?{" "}
             <Link to="/Register" className="text-blue-600 hover:underline">
               Opret bruger.
             </Link>
           </p>
-        </div>
-      </div>
+        </article>
+      </section>
     </>
   );
 }

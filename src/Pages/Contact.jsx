@@ -1,13 +1,9 @@
 import { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "../../supabaseClient";
 import "../Styles/contact.scss";
 import Heading from "../Components/Smallhero";
 
-// supabase client from environment variables
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+// using centralized supabase client
 
 export default function Contact() {
   const [formData, setFormData] = useState({
